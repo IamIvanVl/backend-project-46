@@ -6,17 +6,17 @@ const getDiff = (file1, file2) => {
   let resultString = ''
   for (const key of unique) {
     if (file1[key] === file2[key]) {
-      resultString += `${key}: ${file1[key]}\n`
+      resultString += `    ${key}: ${file1[key]}\n`
     }
     else if ((key in file1) && !(key in file2)) {
-      resultString += `- ${key}: ${file1[key]}\n`
+      resultString += `  - ${key}: ${file1[key]}\n`
     }
     else if (!(key in file1) && (key in file2)) {
-      resultString += `+ ${key}: ${file2[key]}\n`
+      resultString += `  + ${key}: ${file2[key]}\n`
     }
     else {
-      resultString += `- ${key}: ${file1[key]}\n`
-      resultString += `+ ${key}: ${file2[key]}\n`
+      resultString += `  - ${key}: ${file1[key]}\n`
+      resultString += `  + ${key}: ${file2[key]}\n`
     }
   }
   return `{\n${resultString}}`
