@@ -5,5 +5,8 @@
 
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=IamIvanVl_backend-project-46&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=IamIvanVl_backend-project-46)
 
-### Демонстрация работы gendiff.js
+### Демонстрация работы gendiff.js c файлами формата JSON
 https://asciinema.org/a/nUzeFhI8i5AYoEv18Oyq8jalm
+
+### Демонстрация работы gendiff.js c файлами формата YAML
+https://asciinema.org/a/wPCqXDKuEKbDlmmuIWr0jUvnA
