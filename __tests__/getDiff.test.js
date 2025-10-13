@@ -15,5 +15,5 @@ const fixture = fs.readFileSync(fixturePath, 'utf-8')
 test.each(formats)('getDiff', (format) => {
   const file1Path = getFixturePath(`file1.${format}`)
   const file2Path = getFixturePath(`file2.${format}`)
-  expect(genDiff(file1Path, file2Path)).toBe(fixture)
+  expect(genDiff(file1Path, file2Path, 'stylish')).toBe(fixture)
 })
