@@ -1,40 +1,32 @@
 import sortBy from 'lodash/sortBy.js'
+import isPlainObject from 'lodash/isPlainObject.js'
 
-const getDiff = (file1, file2, format) => {
+const getDiff = (file1, file2) => {
   const set = new Set([...Object.keys(file1), ...Object.keys(file2)])
   const unique = sortBy(Array.from(set))
-  let ast = []
-  for (const key of unique) {
+
+  const ast = unique.map((key) => {
     if ((key in file1) && !(key in file2)) {
-      ast.push({ key, value: file1[key], status: 'deleted' })
+      key = { key, value: file1[key], status: 'deleted' }
+      return key
     }
     else if (!(key in file1) && (key in file2)) {
-      ast.push({ key, value: file2[key], status: 'added' })
+      key = { key, value: file2[key], status: 'added' }
+      return key
+    }
+    else if (isPlainObject(file1[key]) && isPlainObject(file2[key])) {
+      return { key, value: getDiff(file1[key], file2[key]), status: 'nested' }
     }
     else if (file1[key] === file2[key]) {
-      ast.push({ key, value: file1[key], status: 'unchanged' })
+      key = { key, value: file1[key], status: 'unchanged' }
+      return key
     }
     else if (file1[key] !== file2[key]) {
-      ast.push({ key, value: file1[key], newValue: file2[key], status: 'changed' })
+      key = { key, value: file1[key], newValue: file2[key], status: 'changed' }
+      return key
     }
-  }
-  // let resultString = ''
-  // for (const key of unique) {
-  //   if (file1[key] === file2[key]) {
-  //     resultString += `    ${key}: ${file1[key]}\n`
-  //   }
-  //   else if ((key in file1) && !(key in file2)) {
-  //     resultString += `  - ${key}: ${file1[key]}\n`
-  //   }
-  //   else if (!(key in file1) && (key in file2)) {
-  //     resultString += `  + ${key}: ${file2[key]}\n`
-  //   }
-  //   else {
-  //     resultString += `  - ${key}: ${file1[key]}\n`
-  //     resultString += `  + ${key}: ${file2[key]}\n`
-  //   }
-  // }
-  // return `{\n${resultString}}`
+  })
+  return ast
 }
 
 export default getDiff
