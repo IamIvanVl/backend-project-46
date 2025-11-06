@@ -4,7 +4,7 @@ const stringify = (value) => {
   if (isPlainObject(value)) {
     return '[complex value]'
   }
-  if (typeof (value) === 'boolean' || value === null) {
+  if (typeof (value) === 'boolean' || value === null || typeof (value) === 'number') {
     return `${value}`
   }
   return `'${value}'`
