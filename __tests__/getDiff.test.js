@@ -17,3 +17,10 @@ test.each(formats)('getDiff', (format) => {
   const file2Path = getFixturePath(`file2.${format}`)
   expect(genDiff(file1Path, file2Path, 'stylish')).toBe(fixture)
 })
+
+test.each(formats)('getDiff plain', (format) => {
+  const file1Path = getFixturePath(`file1.${format}`)
+  const file2Path = getFixturePath(`file2.${format}`)
+  const expected = fs.readFileSync(getFixturePath('plainResult.txt'), 'utf-8')
+  expect(genDiff(file1Path, file2Path, 'plain')).toBe(expected)
+})
