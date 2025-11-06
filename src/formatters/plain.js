@@ -4,7 +4,6 @@ const stringify = (value) => {
   if (isPlainObject(value)) {
     return '[complex value]'
   }
-
   if (typeof (value) === 'boolean' || value === null) {
     return `${value}`
   }
@@ -12,12 +11,12 @@ const stringify = (value) => {
 }
 
 const plain = (ast, path = '') => {
-  const formatted = ast.map((node) => {
+  const formatted = ast.flatMap((node) => {
     const propertyPath = path ? `${path}.${node.key}` : node.key
     const value = stringify(node.value, propertyPath)
     switch (node.status) {
       case 'unchanged':
-        return
+        return []
       case 'nested':
         return plain(node.value, propertyPath)
       case 'changed':
