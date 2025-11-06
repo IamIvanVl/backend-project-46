@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { genDiff } from '../src/index.js'
+import genDiff from '../index.js'
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
