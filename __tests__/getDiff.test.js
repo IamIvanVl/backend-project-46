@@ -29,5 +29,5 @@ test.each(formats)('getDiff plain', (format) => {
   const file1Path = getFixturePath(`file1.${format}`)
   const file2Path = getFixturePath(`file2.${format}`)
   const expected = fs.readFileSync(getFixturePath('jsonResult.json'), 'utf-8')
-  expect(genDiff(file1Path, file2Path, 'jsonFormatter')).toBe(expected)
+  expect(genDiff(file1Path, file2Path, 'json')).toBe(expected)
 })

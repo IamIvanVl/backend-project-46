@@ -1,3 +1,3 @@
-export const jsonFormatter = (ast) => {
+export const json = (ast) => {
   return JSON.stringify(ast)
 }
