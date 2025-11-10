@@ -9,8 +9,7 @@ const formattersMap = {
 }
 
 const getFormat = (formatName) => {
-  const formatterNames = Object.keys(formattersMap)
-  if (!formatterNames.includes(formatName)) {
+  if (formatName === undefined) {
     throw new Error(`Unknown format: ${formatName}`)
   }
   return formattersMap[formatName]
