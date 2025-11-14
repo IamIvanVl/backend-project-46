@@ -1,7 +1,9 @@
 import isPlainObject from 'lodash/isPlainObject.js'
 
 const indent = (depth) => {
-  const space = Math.max(depth * 4 - 2, 0)
+  const indentNumber = 4
+  const leftShift = 2
+  const space = Math.max(depth * indentNumber - leftShift, 0)
   return ` `.repeat(space)
 }
 
