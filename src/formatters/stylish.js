@@ -21,18 +21,18 @@ const stringify = (value, depth) => {
 const stylish = (ast, depth = 1) => {
   const space = indent(depth)
   const formatted = ast.map((node) => {
-    const string = stringify(node.value, depth)
+    const stringifiedValue = stringify(node.value, depth)
     switch (node.status) {
       case 'unchanged':
-        return `${space}  ${node.key}: ${string}`
+        return `${space}  ${node.key}: ${stringifiedValue}`
       case 'nested':
         return `${space}  ${node.key}: {\n${stylish(node.value, depth + 1)}\n${space}  }`
       case 'changed':
-        return `${space}- ${node.key}: ${string}\n${space}+ ${node.key}: ${stringify(node.value2, depth)}`
+        return `${space}- ${node.key}: ${stringifiedValue}\n${space}+ ${node.key}: ${stringify(node.value2, depth)}`
       case 'added':
-        return `${space}+ ${node.key}: ${string}`
+        return `${space}+ ${node.key}: ${stringifiedValue}`
       case 'deleted':
-        return `${space}- ${node.key}: ${string}`
+        return `${space}- ${node.key}: ${stringifiedValue}`
     }
   })
   return formatted.join('\n')
