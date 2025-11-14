@@ -28,7 +28,7 @@ const stylish = (ast, depth = 1) => {
       case 'nested':
         return `${space}  ${node.key}: {\n${stylish(node.value, depth + 1)}\n${space}  }`
       case 'changed':
-        return `${space}- ${node.key}: ${string}\n${space}+ ${node.key}: ${stringify(node.newValue, depth)}`
+        return `${space}- ${node.key}: ${string}\n${space}+ ${node.key}: ${stringify(node.value2, depth)}`
       case 'added':
         return `${space}+ ${node.key}: ${string}`
       case 'deleted':

@@ -20,7 +20,7 @@ const plain = (ast, path = []) => {
       case 'nested':
         return plain(node.value, propertyPath)
       case 'changed':
-        return `Property '${propertyPath.join('.')}' was updated. From ${value} to ${stringify(node.newValue)}`
+        return `Property '${propertyPath.join('.')}' was updated. From ${value} to ${stringify(node.value2)}`
       case 'added':
         return `Property '${propertyPath.join('.')}' was added with value: ${value}`
       case 'deleted':

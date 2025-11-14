@@ -18,7 +18,7 @@ const getDiff = (file1, file2) => {
       return { key, value: file1[key], status: 'unchanged' }
     }
     else if (file1[key] !== file2[key]) {
-      return { key, value: file1[key], newValue: file2[key], status: 'changed' }
+      return { key, value: file1[key], value2: file2[key], status: 'changed' }
     }
   })
   return ast
