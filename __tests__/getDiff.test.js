@@ -9,9 +9,10 @@ const formats = ['json', 'yml']
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const getFixturePath = fileName => path.resolve(__dirname, '..', '__fixtures__', fileName)
-const expectedStylish = fs.readFileSync(getFixturePath('stylishResult.txt'), 'utf-8')
-const expectedPlain = fs.readFileSync(getFixturePath('plainResult.txt'), 'utf-8')
-const expectedJson = fs.readFileSync(getFixturePath('jsonResult.json'), 'utf-8')
+const readFixture = fixtureName => fs.readFileSync(getFixturePath(fixtureName), 'utf-8')
+const expectedStylish = readFixture('stylishResult.txt')
+const expectedPlain = readFixture('plainResult.txt')
+const expectedJson = readFixture('jsonResult.json')
 
 test.each(formats)('getDiff %s', (format) => {
   const file1Path = getFixturePath(`file1.${format}`)
