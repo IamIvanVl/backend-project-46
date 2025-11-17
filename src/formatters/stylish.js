@@ -11,13 +11,12 @@ const stringify = (value, depth) => {
   if (!isPlainObject(value)) {
     return value
   }
-  const space = indent(depth)
 
   const entries = Object.entries(value)
   const result = entries.map(([key, value]) => {
     return `${indent(depth + 1)}  ${key}: ${stringify(value, depth + 1)}`
   })
-  return `{\n${result.join('\n')}\n${space}  }`
+  return `{\n${result.join('\n')}\n${indent(depth)}  }`
 }
 
 const stylish = (ast, depth = 1) => {
